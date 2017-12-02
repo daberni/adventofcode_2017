@@ -14,8 +14,21 @@ object Day2 {
         val checksum = lines.map {
             val strings = it.split(Pattern.compile("\\s")).filter { it.isNotEmpty() }
             val numbers = strings.map { it.trim().toInt() }
-            val difference = numbers.max()!! - numbers.min()!!
-            difference
+
+            val combinations = numbers.mapIndexed { indexA, a ->
+                numbers.mapIndexed { indexB, b ->
+                    if (indexA == indexB) {
+                        null
+                    } else {
+                        Pair(a, b)
+                    }
+                }
+            }.flatten().filterNotNull()
+
+            val pair = combinations.single {
+                it.first % it.second == 0
+            }
+            pair.first / pair.second
         }.sum()
 
         return checksum.toString()
