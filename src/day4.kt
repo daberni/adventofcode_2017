@@ -16,6 +16,6 @@ object Day4 {
     }
 
     fun isValid(text: String): Boolean {
-        return text.split(" ").groupBy { it }.all { it.value.size == 1 }
+        return text.split(" ").groupBy { it.toList().sorted() }.all { it.value.size == 1 }
     }
 }
