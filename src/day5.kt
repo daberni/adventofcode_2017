@@ -22,7 +22,12 @@ object Day5 {
     }
 
     private fun inBounds(numbers: MutableList<Int>, currentIndex: Int): Int {
-        val offset = numbers[currentIndex]++
+        val offset = numbers[currentIndex]
+        if (offset >= 3) {
+            numbers[currentIndex]--
+        } else {
+            numbers[currentIndex]++
+        }
         return currentIndex + offset
     }
 
