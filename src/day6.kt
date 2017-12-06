@@ -19,7 +19,7 @@ object Day6 {
         }
 
 
-        return cycles.toString()
+        return (cycles - configurations.indexOf(banks)).toString()
     }
 
     private fun nextMemory(banks: List<Int>): List<Int> {
