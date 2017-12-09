@@ -14,6 +14,7 @@ object Day8 {
         }
 
         val registers = mutableMapOf<String, Int>()
+        var max = 0
         instructions.forEach {
             val conditionalRegisterValue = registers.getOrPut(it.conditionRegister, { 0 })
             val conditionMet = when (it.condition) {
@@ -33,9 +34,11 @@ object Day8 {
                     "dec" -> registers.put(it.register, value - it.value)
                 }
             }
+
+            max = kotlin.math.max(max, registers.maxBy { it.value }!!.value)
         }
 
-        return registers.maxBy { it.value }!!.value.toString()
+        return max.toString()
     }
 }
 
